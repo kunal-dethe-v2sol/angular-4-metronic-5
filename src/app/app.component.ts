@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router, NavigationStart, NavigationEnd} from '@angular/router';
-import {Helpers} from "./helpers";
+import { SharedHelper } from './components/shared/shared.helper';
 
 @Component({
 	selector: 'body',
@@ -17,11 +17,11 @@ export class AppComponent implements OnInit {
 	ngOnInit() {
 		this._router.events.subscribe((route) => {
 			if (route instanceof NavigationStart) {
-				Helpers.setLoading(true);
-				Helpers.bodyClass(this.globalBodyClass);
+				SharedHelper.setLoading(true);
+				SharedHelper.bodyClass(this.globalBodyClass);
 			}
 			if (route instanceof NavigationEnd) {
-				Helpers.setLoading(false);
+				SharedHelper.setLoading(false);
 			}
 		});
 	}

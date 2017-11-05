@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { Helpers } from '../../../../helpers';
-import { ScriptLoaderService } from '../../../../_services/script-loader.service';
+import { SharedHelper } from '../../../../components/shared/shared.helper';
+import { SharedScriptLoaderService } from '../../../../components/shared/service/shared-script-loader.service';
+
 
 
 @Component({
@@ -11,7 +12,7 @@ encapsulation: ViewEncapsulation.None,
 export class IndexComponent implements OnInit, AfterViewInit {
 
 
-constructor(private _script: ScriptLoaderService)  {
+constructor(private _script: SharedScriptLoaderService)  {
 
 }
 ngOnInit()  {

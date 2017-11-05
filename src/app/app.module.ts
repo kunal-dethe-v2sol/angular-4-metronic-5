@@ -1,29 +1,52 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
-import { ThemeComponent } from './theme/theme.component';
-import { LayoutModule } from './theme/layouts/layout.module';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { Ng2Webstorage } from 'ng2-webstorage';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToasterModule } from 'angular2-toaster';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
+import { ThemeComponent } from './theme/theme.component';
 import { AppComponent } from './app.component';
-import { ScriptLoaderService } from "./_services/script-loader.service";
-import { ThemeRoutingModule } from "./theme/theme-routing.module";
-import { AuthModule } from "./auth/auth.module";
+
+import { AppRoutes } from './app.routes';
+import { ThemeRoutes } from './theme/theme.routes';
+
+import { LayoutModule } from './theme/layouts/layout.module';
+import { SharedModule } from './components/shared/shared.module';
+import { LandingModule } from './components/landing/landing.module';
+import { DashboardModule } from './components/dashboard/dashboard.module';
+
+import { SharedScriptLoaderService } from './components/shared/service/shared-script-loader.service';
+import { SharedCanActivateAuthService } from './components/shared/service/shared-can-activate-auth.service';
 
 @NgModule({
   declarations: [
-ThemeComponent,
-    AppComponent,
+    ThemeComponent,
+    AppComponent
   ],
   imports: [
-LayoutModule,
+    LayoutModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    ThemeRoutingModule,
-    AuthModule,
+    Ng2Webstorage,
+    Ng2Webstorage.forRoot({ prefix: 'recpro', separator: '.', caseSensitive: true }),
+    ToasterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    HttpModule,
+    SharedModule,
+    LandingModule,
+    DashboardModule,
+    AppRoutes,
+    ThemeRoutes
   ],
-  providers: [ScriptLoaderService],
+  providers: [
+    SharedScriptLoaderService,
+    SharedCanActivateAuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

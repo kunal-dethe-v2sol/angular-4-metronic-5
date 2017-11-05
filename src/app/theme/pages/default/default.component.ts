@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Helpers } from '../../../helpers';
-import { ScriptLoaderService } from '../../../_services/script-loader.service';
+import { SharedHelper } from '../../../components/shared/shared.helper';
+import { SharedScriptLoaderService } from '../../../components/shared/service/shared-script-loader.service';
 
 
 @Component({

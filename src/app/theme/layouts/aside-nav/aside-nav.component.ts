@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { Helpers } from '../../../helpers';
+import { SharedHelper } from '../../../components/shared/shared.helper';
 
 declare let mLayout: any;
 @Component({

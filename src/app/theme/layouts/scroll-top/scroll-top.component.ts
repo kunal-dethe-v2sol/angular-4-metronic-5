@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Helpers } from '../../../helpers';
+import { SharedHelper } from '../../../components/shared/shared.helper';
 
 
 @Component({

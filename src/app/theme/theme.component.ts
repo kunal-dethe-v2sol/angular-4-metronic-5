@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { Helpers } from '../helpers';
-import { ScriptLoaderService } from '../_services/script-loader.service';
+import { SharedHelper } from '../components/shared/shared.helper';
+import { SharedScriptLoaderService } from '../components/shared/service/shared-script-loader.service';
 
 declare let mApp: any;
 declare let mUtil: any;
@@ -14,13 +14,13 @@ encapsulation: ViewEncapsulation.None,
 export class ThemeComponent implements OnInit {
 
 
-constructor(private _script: ScriptLoaderService, private _router: Router)  {
+constructor(private _script: SharedScriptLoaderService, private _router: Router)  {
 
 }
 ngOnInit()  {
 		this._script.load('body', 'assets/vendors/base/vendors.bundle.js','assets/demo/default/base/scripts.bundle.js')
 			.then(result => {
-				Helpers.setLoading(false);
+				SharedHelper.setLoading(false);
 				// optional js to be loaded once
 				this._script.load('head', 'assets/vendors/custom/fullcalendar/fullcalendar.bundle.js');
 			});
@@ -29,7 +29,7 @@ ngOnInit()  {
 				(<any>mLayout).closeMobileAsideMenuOffcanvas();
 (<any>mLayout).closeMobileHorMenuOffcanvas();
 				(<any>mApp).scrollTop();
-				Helpers.setLoading(true);
+				SharedHelper.setLoading(true);
 				// hide visible popover
 				(<any>$('[data-toggle="m-popover"]')).popover('hide');
 			}
@@ -37,7 +37,7 @@ ngOnInit()  {
 				// init required js
 				(<any>mApp).init();
 				(<any>mUtil).init();
-				Helpers.setLoading(false);
+				SharedHelper.setLoading(false);
 				// content m-wrapper animation
 				let animation = 'm-animate-fade-in-up';
 				$('.m-wrapper').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function (e) {
