@@ -15,8 +15,9 @@ const routes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                // loadChildren: () => DashboardModule
-                loadChildren: '.\/pages\/default\/index\/index.module#IndexModule'
+                //loadChildren: () => DashboardModule,
+				loadChildren: '../components/dashboard/dashboard.module#DashboardModule'
+                //loadChildren: '.\/pages\/default\/index\/index.module#IndexModule'
             },
             {
                 path: '404',

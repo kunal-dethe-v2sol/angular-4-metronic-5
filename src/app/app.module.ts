@@ -39,9 +39,9 @@ import { SharedCanActivateAuthService } from './components/shared/service/shared
     HttpModule,
     SharedModule,
     LandingModule,
-    DashboardModule,
     AppRoutes,
-    ThemeRoutes
+    ThemeRoutes,
+    DashboardModule,
   ],
   providers: [
     SharedScriptLoaderService,
