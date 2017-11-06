@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ThemeComponent } from './theme.component';
 
-import { DashboardModule } from '../components/dashboard/dashboard.module';
-
 import { SharedCanActivateAuthService } from '../components/shared/service/shared-can-activate-auth.service';
 
 const routes: Routes = [
@@ -15,9 +13,11 @@ const routes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                //loadChildren: () => DashboardModule,
-				loadChildren: '../components/dashboard/dashboard.module#DashboardModule'
-                //loadChildren: '.\/pages\/default\/index\/index.module#IndexModule'
+                loadChildren: '../components/dashboard/dashboard.module#DashboardModule'
+            },
+            {
+                path: 'organization',
+                loadChildren: '../components/masters/organization/organization.module#OrganizationModule'
             },
             {
                 path: '404',

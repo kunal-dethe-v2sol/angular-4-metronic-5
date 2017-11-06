@@ -10,9 +10,11 @@ export class SharedHrefPreventDefaultDirective implements AfterViewInit {
     constructor(private el: ElementRef) {
 
     }
+
     ngAfterViewInit() {
 
     }
+    
     preventDefault(event) {
         if (this.href.length === 0 || this.href === '#') {
             event.preventDefault();

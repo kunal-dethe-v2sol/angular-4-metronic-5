@@ -12,6 +12,9 @@ declare let mLayout: any;
 })
 export class HeaderNavComponent implements OnInit, AfterViewInit {
 
+    //Variables
+    public loggedInUserData = [];
+
     //Constructor parameters
     static get parameters() {
         return [
@@ -27,12 +30,12 @@ export class HeaderNavComponent implements OnInit, AfterViewInit {
         private _router,
         private _activatedRoute) {
 
-        
+
     }
 
     //Angular Hooks
     ngOnInit() {
-
+        this.loggedInUserData = this._sharedService.getAuthService().getLoggedInUserData();
     }
 
     ngAfterViewInit() {

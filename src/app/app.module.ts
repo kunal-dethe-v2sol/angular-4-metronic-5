@@ -17,6 +17,7 @@ import { LayoutModule } from './theme/layouts/layout.module';
 import { SharedModule } from './components/shared/shared.module';
 import { LandingModule } from './components/landing/landing.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
+import { OrganizationModule } from './components/masters/organization/organization.module';
 
 import { SharedScriptLoaderService } from './components/shared/service/shared-script-loader.service';
 import { SharedCanActivateAuthService } from './components/shared/service/shared-can-activate-auth.service';
@@ -42,6 +43,7 @@ import { SharedCanActivateAuthService } from './components/shared/service/shared
     AppRoutes,
     ThemeRoutes,
     DashboardModule,
+    OrganizationModule,
   ],
   providers: [
     SharedScriptLoaderService,

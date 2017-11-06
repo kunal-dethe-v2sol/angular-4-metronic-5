@@ -7,27 +7,28 @@ declare let mApp: any;
 declare let mUtil: any;
 declare let mLayout: any;
 @Component({
-selector: ".m-grid.m-grid--hor.m-grid--root.m-page",
-templateUrl: "./theme.component.html",
-encapsulation: ViewEncapsulation.None,
+	selector: ".m-grid.m-grid--hor.m-grid--root.m-page",
+	templateUrl: "./theme.component.html",
+	encapsulation: ViewEncapsulation.None,
 })
 export class ThemeComponent implements OnInit {
 
+	constructor(private _script: SharedScriptLoaderService, private _router: Router) {
 
-constructor(private _script: SharedScriptLoaderService, private _router: Router)  {
-
-}
-ngOnInit()  {
-		this._script.load('body', 'assets/vendors/base/vendors.bundle.js','assets/demo/default/base/scripts.bundle.js')
+	}
+	
+	ngOnInit() {
+		this._script.load('body', 'assets/vendors/base/vendors.bundle.js', 'assets/demo/default/base/scripts.bundle.js')
 			.then(result => {
 				SharedHelper.setLoading(false);
 				// optional js to be loaded once
 				this._script.load('head', 'assets/vendors/custom/fullcalendar/fullcalendar.bundle.js');
 			});
+
 		this._router.events.subscribe((route) => {
 			if (route instanceof NavigationStart) {
 				(<any>mLayout).closeMobileAsideMenuOffcanvas();
-(<any>mLayout).closeMobileHorMenuOffcanvas();
+				(<any>mLayout).closeMobileHorMenuOffcanvas();
 				(<any>mApp).scrollTop();
 				SharedHelper.setLoading(true);
 				// hide visible popover
@@ -45,6 +46,6 @@ ngOnInit()  {
 				}).removeClass(animation).addClass(animation);
 			}
 		});
-}
+	}
 
 }

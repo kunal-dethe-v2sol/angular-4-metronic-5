@@ -1,20 +1,20 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+
 import { SharedHelper } from '../../../components/shared/shared.helper';
 
-
 @Component({
-selector: ".m-grid.m-grid--hor.m-grid--root.m-page",
-templateUrl: "./layout.component.html",
-encapsulation: ViewEncapsulation.None,
+    selector: ".m-grid.m-grid--hor.m-grid--root.m-page",
+    templateUrl: "./layout.component.html",
+    encapsulation: ViewEncapsulation.None,
 })
 export class LayoutComponent implements OnInit {
 
+    constructor() {
 
-constructor()  {
+    }
 
-}
-ngOnInit()  {
+    ngOnInit() {
 
-}
+    }
 
 }
