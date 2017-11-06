@@ -5,7 +5,7 @@ import { SharedService } from './../shared/service/shared.service';
 import { SharedScriptLoaderService } from './../shared/service/shared-script-loader.service';
 
 @Component({
-    selector: 'recpro-dashboard',
+    selector: ".m-grid__item.m-grid__item--fluid.m-wrapper",
     templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {

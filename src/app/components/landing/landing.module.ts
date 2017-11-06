@@ -15,13 +15,10 @@ import { CONST } from './../shared/shared.constants';
     imports: [
         CommonModule,
         FormsModule,    //Required for LoginComponent and RegisterComponent
-        ReactiveFormsModule    //Required for LoginComponent and RegisterComponent
+        ReactiveFormsModule,    //Required for LoginComponent and RegisterComponent
+        Ng2MDFValidationMessagesModule.globalConfig(CONST['ng2MDFValidationMessagesConfig'])
     ],
     providers: [
-        {
-            provide: Ng2MDFValidationMessagesModule,
-            useValue: CONST['ng2MDFValidationMessagesConfig']
-        },
         LandingService
     ],
     schemas: [

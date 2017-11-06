@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ValidationExtensions } from 'ng2-mdf-validation-messages';
@@ -8,8 +8,9 @@ import { SharedMastersService } from './../../shared/masters/shared.masters.serv
 import { CONST } from './../../shared/shared.constants';
 
 @Component({
-    selector: 'recpro-organization',
+    selector: ".m-grid__item.m-grid__item--fluid.m-wrapper",
     templateUrl: './organization.component.html',
+    encapsulation: ViewEncapsulation.None,
     providers: [SharedMastersService]
 })
 export class OrganizationComponent implements OnInit {
