@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SharedService } from './../shared/service/shared.service';
@@ -6,9 +6,10 @@ import { SharedScriptLoaderService } from './../shared/service/shared-script-loa
 
 @Component({
     selector: ".m-grid__item.m-grid__item--fluid.m-wrapper",
-    templateUrl: './dashboard.component.html'
+    templateUrl: './dashboard.component.html',
+    encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
 
     //Variables
     public loggedInUserData;

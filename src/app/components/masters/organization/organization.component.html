@@ -2,7 +2,7 @@
 <div class="m-subheader">
     <div class="d-flex align-items-center">
         <div class="mr-auto">
-            <h3 class="m-subheader__title m-subheader__title--separator">
+            <h3 class="m-subheader__title">
                 Organizations
             </h3>
         </div>
@@ -17,6 +17,66 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+								<i class="la la-gear"></i>
+							</span>
+                            <h3 *ngIf="!organization.id" class="m-portlet__head-text">Create</h3>
+                            <h3 *ngIf="organization.id" class="m-portlet__head-text">Update</h3>
+                        </div>
+                    </div>
+                </div>
+                <!--begin::Form-->
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" id="form" class="m-form">
+                    <div class="m-portlet__body">
+                        <div class="form-group m-form__group row">
+                            <label for="name" class="col-3 col-form-label">
+								Name:
+							</label>
+                            <div class="col-6">
+                                <input type="text" class="form-control m-input" autofocus placeholder="Name" formControlName="name" required>
+                                <ng2-mdf-validation-message [control]="name" *ngIf="!name.pristine" [class]="'text-danger'"></ng2-mdf-validation-message>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label for="status" class="col-3 col-form-label">
+								Status:
+							</label>
+                            <div class="col-6">
+                                <span class="m-switch m-switch--lg m-switch--icon m-switch--success">
+                                    <label>
+                                        <input type="checkbox" formControlName="status">
+                                        <span></span>
+                                        <ng2-mdf-validation-message [control]="status" *ngIf="!status.pristine" [class]="'text-danger'"></ng2-mdf-validation-message>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__foot m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions--solid">
+                            <div class="row">
+                                <div class="col-3"></div>
+                                <div class="col-9">
+                                    <button type="submit" class="btn btn-brand" [disabled]="!form.valid">
+										Submit
+									</button>
+                                    <button type="button" class="btn btn-secondary" (click)="resetForm()">
+										Cancel
+									</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Portlet-->
+
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
                                 Listing
                             </h3>
@@ -26,104 +86,46 @@
                 <div class="m-portlet__body">
                     <!--begin::Section-->
                     <div class="m-section">
-                        <div class="m-section__content">
+                        <div *ngIf="showBusy" class="m-section__content">
+                            Loading...
+                        </div>
+                        <div *ngIf="showBusy == false && total_count == 0" class="m-section__content">
+                            No organizations found.
+                        </div>
+                        <div *ngIf="total_count" class="m-section__content">
                             <table class="table table-bordered table-responsive">
                                 <thead>
                                     <tr>
-                                        <th>
-                                            #
-                                        </th>
-                                        <th>
-                                            Table heading
-                                        </th>
-                                        <th>
-                                            Table heading
-                                        </th>
-                                        <th>
-                                            Table heading
-                                        </th>
-                                        <th>
-                                            Table heading
-                                        </th>
-                                        <th>
-                                            Table heading
-                                        </th>
-                                        <th>
-                                            Table heading
-                                        </th>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">
-                                            1
-                                        </th>
+                                    <tr *ngFor="let organization of organizations">
+                                        <th scope="row">{{organization.id}}</th>
+                                        <td>{{organization.name}}</td>
                                         <td>
-                                            Table cell
+                                            <span *ngIf="organization.status == 'active'" class="m-badge m-badge--success m-badge--wide">{{organization.status | uppercase}}</span>
+                                            <span *ngIf="organization.status == 'inactive'" class="m-badge m-badge--danger m-badge--wide">{{organization.status | uppercase}}</span>
                                         </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            2
-                                        </th>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            3
-                                        </th>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
-                                        </td>
-                                        <td>
-                                            Table cell
+                                        <td class="text-center">
+                                            <button class="btn btn-info" (click)="copy(organization.id)">Copy</button>
+                                            <button class="btn btn-primary" (click)="edit(organization.id)">Edit</button>
+                                            <button class="btn btn-danger" (click)="delete(organization.id)">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><strong>Total:</strong> {{total_count}}</td>
+                                        <td colspan="3" class="text-right">
+                                            <button *ngIf="page > 1" [disabled]="showBusy" (click)="previousPage()" class="btn btn-warning">Previous</button>
+                                            <button *ngIf="total_count && (page * limit < total_count)" [disabled]="showBusy" (click)="nextPage()" class="btn btn-success">Next</button>
+                                        </td>
+                                        <tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>

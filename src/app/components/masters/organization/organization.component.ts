@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ValidationExtensions } from 'ng2-mdf-validation-messages';
@@ -72,7 +72,7 @@ export class OrganizationComponent implements OnInit {
         this.name = this._fb.control(editMode ? this.organization.name : '', [
             ValidationExtensions.required()
         ]);
-        this.status = this._fb.control(editMode ? this.organization.status : 'active', [
+        this.status = this._fb.control(editMode ? (this.organization.status == 'active' ? true : false) : true, [
             ValidationExtensions.required()
         ]);
 
@@ -84,7 +84,7 @@ export class OrganizationComponent implements OnInit {
 
     resetForm() {
         this.form.reset();
-        this.form.controls['status'].setValue('active');
+        this.form.controls['status'].setValue(true);
         this.organization = {};
     }
 
@@ -99,6 +99,11 @@ export class OrganizationComponent implements OnInit {
                 this.showBusy = false;
                 this.organizations = response[0].models.rows;
                 this.total_count = response[0].models.count;
+
+                if(this.organizations.length == 0 && this.page > 1) {
+                    this.page--;
+                    this.list();
+                }
             },
             error => {
                 this._sharedService.getToastrService().pop('error', 'Error', error);
@@ -134,10 +139,10 @@ export class OrganizationComponent implements OnInit {
 
     onSubmit(): void {
         var formValues = this.form.value;
-
+        
         var data = {
             name: formValues.name,
-            status: formValues.status
+            status: formValues.status ? 'active' : 'inactive'
         }
 
         if (this.organization.id) {
